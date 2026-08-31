@@ -1,0 +1,20 @@
+{
+  "name": "cypress-automation-testsuite",
+  "version": "1.0.0",
+  "description": "",
+  "license": "ISC",
+  "author": "",
+  "main": "index.js",
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run",
+    "cy:run:smoke": "cypress run --spec \"cypress/e2e/smoke/**/*.cy.js\"",
+    "cy:run:checkout": "cypress run --spec \"cypress/e2e/checkout/**/*.cy.js\"",
+    "cy:run:catalog": "cypress run --spec \"cypress/e2e/catalog/**/*.cy.js\"",
+    "cy:run:cart": "cypress run --spec \"cypress/e2e/cart/**/*.cy.js\"",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "cypress": "^15.21.1"
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "email": "qa.tester@example.com",
+  "phone": "7123471234",
+  "address": "1 Crescent Street",
+  "city": "Cupertino",
+  "state": "CA",
+  "zip": "95014",
+  "card": {
+    "name": "QA Tester",
+    "number": "1234567898765432",
+    "expMonth": "Dec",
+    "expYear": "2026",
+    "cvv": "123"
+  }
+}
