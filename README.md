@@ -25,15 +25,37 @@ npm run cy:run:catalog    # stubbed network call
 ## Prioritised user journeys
 
 I explored the site first (home → 4 categories → product detail → cart →
-checkout) rather than guessing at scope. User journeys short listed based on priority order is listed below
-:
+checkout) rather than guessing at scope. User journeys short listed based on priority order is listed below:
 
-1. **P0 — Browse and add to cart** (`smoke/`). If a shopper can't get from
+1. **P0 UserJourner 1 — Browse and add to cart** (`smoke/`). If a shopper can't get from
    browsing to "an item in the cart," nothing else matters. Most
    fundamental path, most likely to be hit by every real visitor.
-2. **P0 — Add to cart and checkout with a dummy credit card** (`checkout/`).
+2. **P0 UserJourney 2— Add to cart and checkout with a dummy credit card** (`checkout/`).
    The explicitly requested deliverable, and the step where a real business loses revenue
    if it silently breaks.
+3. **P0 User Journey 3- Recalculates the subtotal when a line item's quantity changes**
+    Provided the use case to Claude(AI usage), it tested against the site and generated 
+    the code. I then reviewed and questioned to refine the output before integrating 
+    it into my code base
+4. **P0 User Journey 4- Shows empty cart state when cart is emptied**
+    Provided the use case to Claude(AI usage), it tested against the site and generated 
+    the code. I then reviewed and questioned to refine the output before integrating 
+    it into my code base
+5. **P1 — Category listing via a stubbed network call** (`catalog/`). Covers
+   content-rendering correctness and doubles as the deliverable's required
+   network-stubbing test (see below). [user journey completed with the assistance of AI]
+
+ ## Why stub (or not) — the network-interception deliverable
+
+`catalog/category-listing-stubbed.cy.js` intercepts
+`GET **/data/<category>.json`, the real XHR the list page fetches its
+product data from (confirmed by reading the app's actual network traffic
+before writing the test, not assumed). Two reasons this is the one call
+worth stubbing here:
+
+- It's the one place with a genuine data contract to test against. A
+  fixture-driven assertion like "renders exactly these product names/
+  prices" is deterministic and immune to the live catalog changing later.
 
 
 ## Selector strategy
@@ -88,7 +110,10 @@ one precise selector straight to the target — never a multi-hop chain.
 
 ## Known gaps I'd fix with more time
 
-    - **Real app bug, currently untested:** adding a quantity of 5 to the same
+ - **Real app bug, currently untested:** adding a quantity of 5 to the same
   product three or more times leaves the cart's quantity field blank. The
   cart's quantity dropdown only supports values up to 12, so a running
   total past that (15, in this case) doesn't match any option.
+ - **Cart prices are hardcoded in the tests.** `cart-management.cy.js` checks
+  against fixed dollar amounts instead of reading them live, which is
+  brittle if prices ever change.

@@ -31,6 +31,10 @@ class CheckoutPage {
   getConfirmationHeading() {
     return cy.contains("Thank you", { includeShadowDom: true });
   }
+
+  getOrderTotal() {
+  return cy.get(".subtotal", { includeShadowDom: true });
+  }
 }
 
 export default new CheckoutPage();

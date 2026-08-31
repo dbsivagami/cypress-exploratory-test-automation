@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Stub+Test+Jacket",
+    "title": "Stub Test Jacket",
+    "category": "ladies_outerwear",
+    "price": 99.99,
+    "description": "A fixture-only product used to prove the list page renders whatever the API returns, independent of the site's real catalog.",
+    "image": "data/images/10-24102B.jpg",
+    "largeImage": "data/images/10-24102A.jpg"
+  },
+  {
+    "name": "Stub+Test+Vest",
+    "title": "Stub Test Vest",
+    "category": "ladies_outerwear",
+    "price": 45.5,
+    "description": "A second fixture-only product.",
+    "image": "data/images/10-25058B.jpg",
+    "largeImage": "data/images/10-25058A.jpg"
+  }
+]
