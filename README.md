@@ -41,7 +41,7 @@ checkout) rather than guessing at scope. User journeys short listed based on pri
     Provided the use case to Claude(AI usage), it tested against the site and generated 
     the code. I then reviewed and questioned to refine the output before integrating 
     it into my code base
-5. **P1 — Category listing via a stubbed network call** (`catalog/`). Covers
+5. **P1 UserJourner 1 — Category listing via a stubbed network call** (`catalog/`). Covers
    content-rendering correctness and doubles as the deliverable's required
    network-stubbing test (see below). [user journey completed with the assistance of AI]
 
@@ -117,3 +117,9 @@ one precise selector straight to the target — never a multi-hop chain.
  - **Cart prices are hardcoded in the tests.** `cart-management.cy.js` checks
   against fixed dollar amounts instead of reading them live, which is
   brittle if prices ever change.
+
+## AI Usage
+
+- I directed AI to write assertions in add-product-to-cart-and-checkout.cy.js. I always run AI-written tests repeatedly to catch flakiness, since AI can quietly adjust code just to pass rather than follow best practice, producing false positives. Found a flaky assertion and had it switch to .should() (which polls) instead of a fixed wait.
+- I tasked AI with creating a spec for cart-changes validation. It hardcoded expected values in the assertions — not best practice, since it's brittle to real data changes.
+- I instructed AI to create the category-name mapping in HomePage.js. It didn't include exception handling for invalid categories, so I had it rework the code to add that.
